@@ -1,0 +1,20 @@
+Demo Video:- https://www.loom.com/share/36b93850ac644836b3470f478fe01655?sid=fbb5a52c-7f5d-47d8-b92e-25899f970029
+Installation:
+Prerequisites (Node.js, Docker)
+Run Docker Gui
+Build Docker Images:
+For Node.js:-
+
+docker build -t backend-registeration-app .
+
+For MySQL Database:-
+docker build -t backend-registration-mysql -f Dockerfile.mysql . 
+
+Run Docker Containers:
+
+Run MySQL Container:-
+docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=root_password -e MYSQL_DATABASE=user_address -e MYSQL_USER=dev -e MYSQL_PASSWORD=1234 backend-registration-mysql
+
+Run Node.js Application Container:-
+docker run -d --name app-container -p 8080:3000 --link mysql-container backend-registeration-app
+
